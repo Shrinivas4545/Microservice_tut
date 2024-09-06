@@ -13,6 +13,7 @@ import com.example.moviecatalogservice.Rating;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 //import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 
 @Service
 public class MovieInfo {
@@ -26,13 +27,14 @@ public class MovieInfo {
 //	@HystrixCommand(fallbackMethod = "getFallBackCatalogItem")
 //	@Retry(name = "default", fallbackMethod = "getFallBackCatalogItem")
 	@CircuitBreaker(name = "default", fallbackMethod = "getFallBackCatalogItem")
+//	@TimeLimiter(name = "infoTimeLimit", fallbackMethod = "getFallBackCatalogItem")
 	public CatalogItem getCatalogItem(Rating rating) {
 		logger.info("MovieInfo executed...");
 		Movie movie = restTemplate.getForObject("http://movie-info-service/movies/"+rating.getMovieId(), Movie.class);
 		return new CatalogItem(movie.getName(), "Description", rating.getRating());
 	}
 	
-	public CatalogItem getFallBackCatalogItem(Rating rating) {
+	public CatalogItem getFallBackCatalogItem(Exception e) {
 		
 		return new CatalogItem("Movie not found", "", 0);
 	}

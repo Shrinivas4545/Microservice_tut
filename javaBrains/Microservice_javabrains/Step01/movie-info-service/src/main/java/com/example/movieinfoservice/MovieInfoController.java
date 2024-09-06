@@ -1,4 +1,4 @@
-Restpackage com.example.movieinfoservice;
+package com.example.movieinfoservice;
 
 import java.io.IOException;
 import java.net.URI;

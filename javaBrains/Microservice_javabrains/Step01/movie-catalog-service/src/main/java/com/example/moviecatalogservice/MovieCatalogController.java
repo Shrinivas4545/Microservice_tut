@@ -33,7 +33,7 @@ public class MovieCatalogController {
 	
 	@GetMapping("/{userId}")
 //	@HystrixCommand(fallbackMethod = "getFallBackCatalog")
-	@CircuitBreaker(name = "default", fallbackMethod = "getFallBackCatalog")
+//	@CircuitBreaker(name = "fallBackMain", fallbackMethod = "getFallBackCatalog")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId){
 		
 		//get all rated movie ids
@@ -55,7 +55,7 @@ public class MovieCatalogController {
 //		return List.of(new CatalogItem("Transformers", "Test", 4));
 	}
 	
-	public List<CatalogItem> getFallBackCatalog(@PathVariable("userId") String userId){
+	public List<CatalogItem> getFallBackCatalog(Exception e){
 		return List.of(new CatalogItem("No movie", "", 0));
 	}
 	
