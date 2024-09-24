@@ -1,0 +1,43 @@
+spring.application.name: spring-boot-config
+
+my:
+  greeting: Hello again
+  fullGreetDesc: Description:${my.greeting} production environment
+  list:
+     values: one,two,three
+
+dbValues: "{connectionString:'http://....', userName:'foo', password:'pass'}"
+
+db:
+   connection: "{connectionString:'http://....', userName:'foo', password:'pass'}"
+   host: 127.0.0.1
+   port: 1200 
+
+
+#----------yml without nesting-------------------
+#spring.application.name: spring-boot-config
+
+#my.greeting: Hello again
+#my.fullGreetDesc: Description:${my.greeting}
+
+#my.list.values: one,two,three
+
+#dbValues: "{connectionString:'http://....', userName:'foo', password:'pass'}"
+
+#db.connection: {connectionString:'http://....', userName:'foo', password:'pass'}
+#db.host: 127.0.0.1
+#db.port: 1200 
+
+#----------application.properties---------------------
+#spring.application.name: spring-boot-config
+
+#my.greeting: Hello again
+#my.fullGreetDesc: Description:${my.greeting}
+
+#my.list.values: one,two,three
+
+#dbValues: {connectionString:'http://....', userName:'foo', password:'pass'}
+
+#db.connection: {connectionString:'http://....', userName:'foo', password:'pass'}
+#db.host: 127.0.0.1
+#db.port: 1200 

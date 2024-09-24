@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ public class Controller {
 	@Value("${my.fullGreetDesc:default value}")  // takes default value when my.fullGreetDesc is not there in application.properties
 	private String greetMsg;
 	
-	@Value("${my.list}")
+	@Value("${my.list.values}")
 	private List<String> list;
 	
 	@Value("#{${dbValues}}")
@@ -24,6 +25,8 @@ public class Controller {
 	@Autowired
 	private DbConnection dbConnection;
 	
+	@Autowired
+	private Environment env;
 	
 	@GetMapping("/greet")
 	public String getGreeting() {
@@ -34,4 +37,18 @@ public class Controller {
 	public String getDbDetails() {
 		return dbConnection.getConnection()+dbConnection.getHost()+dbConnection.getPort();
 	}
+	
+	@GetMapping("/envDetails")
+	public String getEnvDetails() {
+		return env.toString();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
