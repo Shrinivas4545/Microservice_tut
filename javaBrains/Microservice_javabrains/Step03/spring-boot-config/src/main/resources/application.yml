@@ -1,23 +1,30 @@
 spring.application.name: spring-boot-config
 
-my:
-  greeting: Hello again
-  fullGreetDesc: Description:${my.greeting}
-  list:
-     values: one,two,three
-
-dbValues: "{connectionString:'http://....', userName:'foo', password:'pass'}"
-
-db:
-   connection: "{connectionString:'http://....', userName:'foo', password:'pass'}"
-   host: 127.0.0.1
-   port: 1200 
-   
 spring:
-  profiles:
-    active:
-    - test
-    - prodcution
+  config:
+    import:
+    - optional:configserver:http://localhost:8888/
+
+
+
+#my:
+#  greeting: Hello again
+#  fullGreetDesc: Description:${my.greeting}
+#  list:
+#     values: one,two,three
+
+#dbValues: "{connectionString:'http://....', userName:'foo', password:'pass'}"
+
+#db:
+#   connection: "{connectionString:'http://....', userName:'foo', password:'pass'}"
+#   host: 127.0.0.1
+#   port: 1200 
+
+#spring:
+#  profiles:
+#    active:
+#    - test
+#    - prodcution
 
 #----------yml without nesting-------------------
 #spring.application.name: spring-boot-config
